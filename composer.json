@@ -1,0 +1,61 @@
+{
+  "name": "wpgraphql-testcase/wpgraphql-testcase",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0-or-later",
+  "require-dev": {
+    "wp-graphql/wp-graphql-testcase": "*",
+    "squizlabs/php_codesniffer": "^3.6",
+    "phpcompatibility/phpcompatibility-wp": "*",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+    "wp-coding-standards/wpcs": "^2.3",
+    "lucatume/wp-browser": "^3.0",
+    "codeception/module-asserts": "^1.3",
+    "codeception/module-phpbrowser": "^1.0",
+    "codeception/module-webdriver": "^1.2",
+    "codeception/module-db": "^1.1",
+    "codeception/module-filesystem": "^1.0",
+    "codeception/module-cli": "^1.1",
+    "codeception/util-universalframework": "^1.0",
+    "php-webdriver/webdriver": "^1.11",
+    "codeception/module-rest": "^1.3",
+    "phpunit/php-timer": "^5.0"
+  },
+  "scripts": {
+    "build-test": "@docker-build -t",
+    "run-test": "@docker-run -t",
+    "phpcs-i": [
+      "php ./vendor/bin/phpcs -i"
+    ],
+    "check-cs": [
+      "php ./vendor/bin/phpcs"
+    ],
+    "fix-cs": [
+      "php ./vendor/bin/phpcbf"
+    ]
+  },
+  "archive": {
+    "exclude": [
+      "*.yml",
+      "*.zip",
+      ".env*",
+      "!.wordpress-org/",
+      "!build",
+      "docker/",
+      "docs/",
+      "node_modules/",
+      "packages",
+      "plugin-build/",
+      "tests/",
+      "!vendor/",
+      "wp-content/"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "require": {
+    "appsero/client": "^1.2"
+  }
+}
