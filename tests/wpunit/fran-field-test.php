@@ -1,9 +1,7 @@
 <?php
 class FranFieldTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
-    /**
-    * @return void
-    */
+  
    public function setUp(): void {
 
        parent::setUp();
@@ -15,8 +13,8 @@ class FranFieldTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
    public function testFranFields(){
     $title='Fran test post';
-    $Post_ID = $this->factory()->post->create([
-      'post_title'=>$title
+    $post_id = $this->factory()->post->create([
+      'Post_title'=>$title
     ]);
     $query = '
     {
@@ -30,14 +28,15 @@ class FranFieldTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
     }
     ';
     $actual=graphql([
-      'query'=>$query
+      'Query'=>$query
     ]);
+    //assertQuerySuccessful is a function that comes from WPGraphQL Test Case library
+    //expectedNode is a function from the library too that runs when you expect a certain node
     self::assertQuerySuccessful($actual, [
-      $this->expectedNode('recentPosts.nodes',[
-        '__typename'=>'Post',
-        'databaseId'=>$Post_ID,
-        'title'=>$title,
-      ])
+      $this->expectedField( '__typename'. 'Post' ),
+      $this->expectedField( 'databaseId', $post_id ),
+      $this->expectedField( 'title', $title ),
     ]);
+    
    }
 }
